@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.ui.externaltools.ProgramLaunchConfigurationType">
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
+    <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="P:\ARM-toolchain\xpack-openocd-0.11.0-5\bin\openocd.exe"/>
+    <stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-s tcl -f ${OPEN_OCD_PATH}/scripts/interface/ftdi/olimex-arm-usb-tiny-h.cfg&#13;&#10;-f ${OPEN_OCD_PATH}/scripts/interface/ftdi/olimex-arm-jtag-swd.cfg &#13;&#10;-f ${OPEN_OCD_PATH}/scripts/target/stm32f0x.cfg&#13;&#10;-c &quot;init&quot;&#13;&#10;-c &quot;reset halt&quot;&#13;&#10;-c &quot;program ${PRJ_PATH}/IN12_STMF0_ESP8266_RADIO/build_STM32F0xx/IN12_STMF0_ESP8266_RADIO.hex verify exit&quot;"/>
+    <stringAttribute key="org.eclipse.ui.externaltools.ATTR_WORKING_DIRECTORY" value="P:\ARM-toolchain\xpack-openocd-0.11.0-5"/>
+</launchConfiguration>

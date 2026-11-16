@@ -1,0 +1,125 @@
+#ifndef __CLK_H__
+#define __CLK_H__
+
+#include "stdint.h"
+#include "stdbool.h"
+
+#if defined ( STM32F103xE ) || defined ( STM32F103xB )
+#include "stm32f1xx_ll_bus.h"
+#elif defined ( STM32F030x6 )
+#include "stm32f0xx_ll_bus.h"
+#elif defined ( STM32F373xC )
+#include "stm32f3xx_ll_bus.h"
+#endif
+
+/* Defines */
+
+/* Enumerations */
+enum /* clk peripheral */ {
+#if defined ( STM32F103xE ) || defined ( STM32F103xB ) || defined ( STM32F373xC )
+	//apb1
+	CLK_TIMER2 = LL_APB1_GRP1_PERIPH_TIM2,
+	CLK_TIMER3 = LL_APB1_GRP1_PERIPH_TIM3,
+	CLK_TIMER4 = LL_APB1_GRP1_PERIPH_TIM4,
+#if defined ( STM32F103xE ) || defined ( STM32F373xC )
+	CLK_TIMER5 = LL_APB1_GRP1_PERIPH_TIM5,
+	CLK_TIMER6 = LL_APB1_GRP1_PERIPH_TIM6,
+	CLK_TIMER7 = LL_APB1_GRP1_PERIPH_TIM7,
+	CLK_DAC = LL_APB1_GRP1_PERIPH_DAC1,
+#endif
+	CLK_SPI2 = LL_APB1_GRP1_PERIPH_SPI2,
+#if defined ( STM32F103xE ) || defined ( STM32F373xC )
+	CLK_SPI3 = LL_APB1_GRP1_PERIPH_SPI3,
+#endif
+
+#if defined ( STM32F103xE )
+	CLK_CAN1 = LL_APB1_GRP1_PERIPH_CAN1,
+#endif
+	CLK_USART2 = LL_APB1_GRP1_PERIPH_USART2,
+	CLK_USART3 = LL_APB1_GRP1_PERIPH_USART3,
+#if defined ( STM32F103xE )
+	CLK_UART4 = LL_APB1_GRP1_PERIPH_UART4,
+	CLK_UART5 = LL_APB1_GRP1_PERIPH_UART5,
+#endif
+	CLK_USB = LL_APB1_GRP1_PERIPH_USB,
+	CLK_POWER = LL_APB1_GRP1_PERIPH_PWR,
+	//apb2
+#if defined ( STM32F103xE )
+	CLK_PORTA = LL_APB2_GRP1_PERIPH_GPIOA,
+	CLK_PORTB = LL_APB2_GRP1_PERIPH_GPIOB,
+	CLK_PORTC = LL_APB2_GRP1_PERIPH_GPIOC,
+	CLK_PORTD = LL_APB2_GRP1_PERIPH_GPIOD,
+	CLK_PORTE = LL_APB2_GRP1_PERIPH_GPIOE,
+#endif
+
+#if defined ( STM32F103xE )
+	CLK_PORTF = LL_APB2_GRP1_PERIPH_GPIOF,
+	CLK_PORTG = LL_APB2_GRP1_PERIPH_GPIOG,
+	CLK_TIMER1 = LL_APB2_GRP1_PERIPH_TIM1,
+	CLK_TIMER8 = LL_APB2_GRP1_PERIPH_TIM8,
+#endif
+	CLK_ADC1 = LL_APB2_GRP1_PERIPH_ADC1,
+#if defined ( STM32F103xE )
+	CLK_ADC2 = LL_APB2_GRP1_PERIPH_ADC2,
+	CLK_ADC3 = LL_APB2_GRP1_PERIPH_ADC3,
+#endif
+	CLK_SPI1 = LL_APB2_GRP1_PERIPH_SPI1,
+	CLK_USART1 = LL_APB2_GRP1_PERIPH_USART1,
+#if defined ( STM32F103xE )
+	CLK_AFIO = LL_APB2_GRP1_PERIPH_AFIO,
+#endif
+
+#if defined ( STM32F030x6 ) || defined ( STM32F373xC )
+	//ahb1 grp1
+	CLK_PORTA = LL_AHB1_GRP1_PERIPH_GPIOA,
+	CLK_PORTB = LL_AHB1_GRP1_PERIPH_GPIOB,
+	CLK_PORTC = LL_AHB1_GRP1_PERIPH_GPIOC,
+	CLK_PORTD = LL_AHB1_GRP1_PERIPH_GPIOD,
+	CLK_PORTF = LL_AHB1_GRP1_PERIPH_GPIOF,
+	//apb1 grp1
+	CLK_TIMER3 = LL_APB1_GRP1_PERIPH_TIM3,
+	CLK_TIMER14 = LL_APB1_GRP1_PERIPH_TIM14,
+	CLK_I2C1 = LL_APB1_GRP1_PERIPH_I2C1,
+	CLK_POWER = LL_APB1_GRP1_PERIPH_PWR,
+	//apb1 grp2
+#if defined ( STM32F030x6 )
+	CLK_SYSCFG = LL_APB1_GRP2_PERIPH_SYSCFG,
+	CLK_TIMER1 = LL_APB1_GRP2_PERIPH_TIM1,
+	CLK_TIMER16 = LL_APB1_GRP2_PERIPH_TIM16,
+	CLK_TIMER17 = LL_APB1_GRP2_PERIPH_TIM17,
+	CLK_SPI1 = LL_APB1_GRP2_PERIPH_SPI1,
+	CLK_USART1 = LL_APB1_GRP2_PERIPH_USART1,
+	CLK_ADC1 = LL_APB1_GRP2_PERIPH_ADC1,
+
+#endif
+};
+
+enum APB_num
+{
+	APB1,
+#if defined ( STM32F103xE ) || defined ( STM32F103xB ) || defined ( STM32F373xC )
+	APB2,
+#endif
+#if defined ( STM32F030x6 ) || defined ( STM32F373xC )
+	AHB1,
+#endif
+};
+
+#if defined ( STM32F030x6 )
+enum GRP_num
+{
+	GRP1,
+	GRP2
+};
+#endif
+
+/* Exported functions */
+#if defined ( STM32F103xE ) || defined ( STM32F103xB ) || defined ( STM32F373xC )
+extern void clk_enable(uint32_t clk_peripherals, enum APB_num apb);
+#endif
+
+#if defined ( STM32F030x6 )
+extern void clk_enable(uint32_t clk_peripherals, enum APB_num apb, enum GRP_num grp);
+#endif
+
+#endif
